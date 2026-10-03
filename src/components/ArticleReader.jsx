@@ -60,6 +60,25 @@ export function ArticleReader({ article, onClose, onPrev, onNext }) {
     rootSite = "";
   }
 
+  let formattedDate = "";
+  if (article.pubDate) {
+    const isDateOnly = /^\d{4}-\d{2}-\d{2}$/.test(article.pubDate);
+    const parsed = new Date(article.pubDate);
+    if (!Number.isNaN(parsed.getTime())) {
+      formattedDate = isDateOnly
+        ? parsed.toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            timeZone: "UTC", // date-only string has no real time — don't let local TZ shift the calendar day
+          })
+        : parsed.toLocaleString(undefined, {
+            dateStyle: "medium",
+            timeStyle: "short",
+          });
+    }
+  }
+
   return (
     <div
       class="article-reader"
@@ -88,6 +107,9 @@ export function ArticleReader({ article, onClose, onPrev, onNext }) {
         <h1>{article.title}</h1>
         {article.source && (
           <div class="article-reader-source">{article.source}</div>
+        )}
+        {formattedDate && (
+          <div class="article-reader-date">{formattedDate}</div>
         )}
         <div class="article-reader-body">
           {article.excerpt

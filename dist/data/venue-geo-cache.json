@@ -1,0 +1,47 @@
+{
+  "Baku, Azerbaijan": {
+    "cityCenter": [
+      49.832801,
+      40.375589
+    ],
+    "boundaryType": "country",
+    "boundaryBbox": [
+      40.893696500000004,
+      35.0927255,
+      58.7719055,
+      45.658452499999996
+    ],
+    "iso": "AZE",
+    "fetchedAt": "2026-09-15T21:10:31.624Z"
+  },
+  "Kuala Lumpur, Malaysia": {
+    "cityCenter": [
+      101.694237,
+      3.151696
+    ],
+    "boundaryType": "country",
+    "boundaryBbox": [
+      77.9164074,
+      -4.795128799999999,
+      125.4720666,
+      11.0985208
+    ],
+    "iso": "MYS",
+    "fetchedAt": "2026-09-26T22:02:53.437Z"
+  },
+  "Lusail, Qatar": {
+    "cityCenter": [
+      51.51883,
+      25.422998
+    ],
+    "boundaryType": "country",
+    "boundaryBbox": [
+      49.51883,
+      23.2625132,
+      53.51883,
+      27.5834828
+    ],
+    "iso": "QAT",
+    "fetchedAt": "2026-09-26T22:02:54.601Z"
+  }
+}

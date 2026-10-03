@@ -284,3 +284,15 @@ body {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+
+.article-reader-source {
+  font-size: 0.85rem;
+  color: var(--muted, #888);
+  margin: 0 0 4px;
+}
+
+.article-reader-date {
+  font-size: 0.45rem;
+  color: var(--muted, #888);
+  margin: 0 0 16px;
+}
