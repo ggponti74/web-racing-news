@@ -86,30 +86,30 @@ export function ArticleReader({ article, onClose, onPrev, onNext }) {
       onTouchEnd={handleTouchEnd}
       ref={scrollRef}
     >
-      <div class="article-reader-header">
-        <button
-          class="article-reader-icon-btn"
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ✕
-        </button>
-        {rootSite && <span class="article-reader-domain">{rootSite}</span>}
-        <button
-          class="article-reader-icon-btn"
-          onClick={openExternal}
-          aria-label="Open in browser"
-        >
-          ↗
-        </button>
-      </div>
+<div class="article-reader-header">
+  <button
+    class="article-reader-icon-btn"
+    onClick={onClose}
+    aria-label="Close"
+  >
+    ✕
+  </button>
+  <div class="article-reader-header-meta">
+    {rootSite && <span class="article-reader-domain">{rootSite}</span>}
+    {formattedDate && <span class="article-reader-date">{formattedDate}</span>}
+  </div>
+  <button
+    class="article-reader-icon-btn"
+    onClick={openExternal}
+    aria-label="Open in browser"
+  >
+    ↗
+  </button>
+</div>
       <div class="article-reader-content">
         <h1>{article.title}</h1>
         {article.source && (
           <div class="article-reader-source">{article.source}</div>
-        )}
-        {formattedDate && (
-          <div class="article-reader-date">{formattedDate}</div>
         )}
         <div class="article-reader-body">
           {article.excerpt
