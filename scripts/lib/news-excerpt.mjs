@@ -20,6 +20,30 @@ export function isLowContent(excerpt, minLength = 300) {
   return excerpt.trim().length < minLength;
 }
 
+const CHROME_LINE_RES = [
+  /^F1 Store\b/i, /^RACE TICKETS\b/i, /^Download the F1 calendar$/i,
+  /^Never miss a thing from the Formula 1 season/i,
+  /^\[Article continues below\]$/i, /^©\s/,
+  /^(Find out more|READ MORE|YouTube)$/i,
+  /^(GEN4|WATCH|TICKETS|HIGHLIGHTS|CALENDAR|UNMISSABLE|FOLLOW|HOSPITALITY):/,
+  /^(Featured|Driver News|Team News)$/,
+  /^(\d+ (DAY|HOUR|WEEK)S? AGO|[A-Z]{3} \d{1,2}, \d{4})$/,
+];
+const TAIL_CUT_RES = [
+  /^(Next Up|Related Articles|More news)$/i,
+  /^\d+ (DAY|HOUR|WEEK)S? AGO\s•\s/,
+];
+
+export function stripChrome(paragraphs) {
+  const out = [];
+  for (const p of paragraphs) {
+    if (TAIL_CUT_RES.some((re) => re.test(p))) break;
+    if (p.length < 200 && CHROME_LINE_RES.some((re) => re.test(p))) continue;
+    out.push(p);
+  }
+  return out;
+}
+
 // Returns { excerpt, html } — html is the raw page source in case a caller
 // also needs to pull other metadata (e.g. a publish date) out of it without
 // fetching the page twice.
@@ -36,10 +60,10 @@ export async function fetchExcerpt(url, { userAgent = DEFAULT_UA } = {}) {
       .replace(/<br\s*\/?>/gi, "\n\n");
 
     const textDom = new JSDOM(`<div>${markedHtml}</div>`);
-    const paragraphs = textDom.window.document.body.textContent
+    const paragraphs = stripChrome(textDom.window.document.body.textContent
       .split(/\n\s*\n/)
       .map((p) => p.replace(/\s+/g, " ").trim())
-      .filter(Boolean);
+      .filter(Boolean));
 
     return { excerpt: paragraphs.length ? paragraphs.join("\n\n") : null, html };
   } catch (e) {
