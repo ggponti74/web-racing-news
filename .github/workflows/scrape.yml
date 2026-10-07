@@ -72,6 +72,7 @@ jobs:
           git config user.email "ggponti74@hotmail.com"
           git add public/data/*.json
           git add public/data/*.json src/components/LastUpdated.jsx
+          git add public/images/maps/*.jpg
           if git diff --staged --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
