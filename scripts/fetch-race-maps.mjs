@@ -206,7 +206,7 @@ async function fetchStaticMap({
   const marker = `pin-s+${markerColor}(${lon},${lat})`;
 
   const url = `https://api.mapbox.com/styles/v1/${MAPBOX_USERNAME}/${styleId}/static/${marker}/[${minLon},${minLat},${maxLon},${maxLat}]/${width}x${height}@2x?access_token=${MAPBOX_TOKEN}`;
-
+console.log( url );
   const res = await fetch(url);
   if (!res.ok) {
     const body = await res.text();
@@ -214,6 +214,7 @@ async function fetchStaticMap({
       `fetchStaticMap failed (${theme}): ${res.status} — ${body}`,
     );
   }
+console.log(res.status);  
   return Buffer.from(await res.arrayBuffer());
 }
 
