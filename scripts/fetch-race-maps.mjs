@@ -13,7 +13,8 @@ const OUTPUT_DIR = "public/images/maps";
 const MAP_WIDTH = 600;
 const MAP_HEIGHT = 400;
 
-const MIN_BBOX_SPAN_DEG = 30; // tune once you see Monaco/Vatican render
+const MIN_BBOX_SPAN_DEG = 44; // tune once you see Monaco/Vatican render
+const MAX_BBOX_SPAN_DEG = 30;
 
 function slugify(str) {
   return str
