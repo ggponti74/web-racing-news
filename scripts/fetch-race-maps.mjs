@@ -13,7 +13,7 @@ const OUTPUT_DIR = "public/images/maps";
 const MAP_WIDTH = 600;
 const MAP_HEIGHT = 400;
 
-const MIN_BBOX_SPAN_DEG = 4; // tune once you see Monaco/Vatican render
+const MIN_BBOX_SPAN_DEG = 30; // tune once you see Monaco/Vatican render
 
 function slugify(str) {
   return str
@@ -86,18 +86,21 @@ function centerBboxOnCity(
   cityCenter,
   minSpan = MIN_BBOX_SPAN_DEG,
   paddingFactor = 2.4,
+  maxSpan = MAX_BBOX_SPAN_DEG,
 ) {
   const [minLon, minLat, maxLon, maxLat] = countryBbox;
-  const lonSpan = Math.max((maxLon - minLon) * paddingFactor, minSpan);
-  const latSpan = Math.max((maxLat - minLat) * paddingFactor, minSpan);
+  const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
+  const lonSpan = clamp((maxLon - minLon) * paddingFactor, minSpan, maxSpan);
+  const latSpan = clamp((maxLat - minLat) * paddingFactor, minSpan, maxSpan);
 
   const [cityLon, cityLat] = cityCenter;
+  const LAT_LIMIT = 85.0511;
 
   return [
-    cityLon - lonSpan / 2,
-    cityLat - latSpan / 2,
-    cityLon + lonSpan / 2,
-    cityLat + latSpan / 2,
+    Math.max(-180, cityLon - lonSpan / 2),
+    Math.max(-LAT_LIMIT, cityLat - latSpan / 2),
+    Math.min(180, cityLon + lonSpan / 2),
+    Math.min(LAT_LIMIT, cityLat + latSpan / 2),
   ];
 }
 
