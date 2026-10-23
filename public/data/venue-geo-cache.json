@@ -73,5 +73,20 @@
     ],
     "iso": "USA",
     "fetchedAt": "2026-10-15T12:19:50.963Z"
+  },
+  "St. Petersburg, USA": {
+    "cityCenter": [
+      -82.638486,
+      27.772077
+    ],
+    "boundaryType": "country",
+    "boundaryBbox": [
+      -97.638486,
+      12.772077,
+      -67.638486,
+      42.772076999999996
+    ],
+    "iso": "USA",
+    "fetchedAt": "2026-10-23T19:58:55.835Z"
   }
 }
