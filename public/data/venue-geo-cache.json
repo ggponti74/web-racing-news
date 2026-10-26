@@ -88,5 +88,20 @@
     ],
     "iso": "USA",
     "fetchedAt": "2026-10-23T19:58:55.835Z"
+  },
+  "Mexico City, Mexico": {
+    "cityCenter": [
+      -99.133178,
+      19.43263
+    ],
+    "boundaryType": "country",
+    "boundaryBbox": [
+      -114.133178,
+      4.43263,
+      -84.133178,
+      34.43263
+    ],
+    "iso": "MEX",
+    "fetchedAt": "2026-10-26T04:52:08.630Z"
   }
 }
