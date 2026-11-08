@@ -118,5 +118,20 @@
     ],
     "iso": "BRA",
     "fetchedAt": "2026-11-02T06:12:01.217Z"
+  },
+  "Las Vegas, USA": {
+    "cityCenter": [
+      -115.14062,
+      36.169213
+    ],
+    "boundaryType": "country",
+    "boundaryBbox": [
+      -130.14062,
+      21.169213,
+      -100.14062,
+      51.169213
+    ],
+    "iso": "USA",
+    "fetchedAt": "2026-11-08T20:31:03.919Z"
   }
 }
